@@ -1,0 +1,39 @@
+<app-loading-spinner *ngIf="!(loaded$ | async); else loading"></app-loading-spinner>
+
+<ng-template #loading>
+
+  <div class="form-group">
+      <select class="form-control" [(ngModel)]="selectedValue" (ngModelChange)="onChange($event)">
+        <option value="0">
+          -- Select an element --
+        </option>
+        <option *ngFor="let option of (options$ | async)" [value]="option.product_id">
+          {{ option.product_name }}
+        </option>
+      </select>`
+  </div>
+
+  <div class="form-group">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#Id</th>
+            <th scope="col">Product</th>
+            <th scope="col">Date</th>
+            <th scope="col">Inventory level</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor="let product of (products$ | async) | filter: selectedValue">
+            <tr>
+              <th scope="row">{{ product.product_id }}</th>
+              <td>{{ product.product_name }}</td>
+              <td>{{ product.date }}</td>
+              <td>{{ product.inventory_level }}</td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+  </div>
+
+</ng-template>
