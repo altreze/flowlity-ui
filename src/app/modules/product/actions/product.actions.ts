@@ -3,7 +3,7 @@
  * @Date:   2019-07-31T16:57:21+01:00
  * @Filename: product.actions.ts
  * @Last modified by:   mouad
- * @Last modified time: 2019-07-31T17:40:02+01:00
+ * @Last modified time: 2019-08-01T14:36:38+01:00
  * @Copyright: Altreze SARL
  */
 
@@ -62,4 +62,4 @@ export type ProductActions =
   | UpdateProductFail
   | LoadProducts
   | LoadProductsSuccess
-  | LoadProductsFail
+  | LoadProductsFail;
