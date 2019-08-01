@@ -3,7 +3,7 @@
  * @Date:   2019-07-31T13:15:25+01:00
  * @Filename: app.module.ts
  * @Last modified by:   mouad
- * @Last modified time: 2019-07-31T19:18:25+01:00
+ * @Last modified time: 2019-07-31T23:03:08+01:00
  * @Copyright: Altreze SARL
  */
 

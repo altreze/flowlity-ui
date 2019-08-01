@@ -3,7 +3,7 @@
  * @Date:   2019-07-31T13:39:09+01:00
  * @Filename: products.component.ts
  * @Last modified by:   mouad
- * @Last modified time: 2019-08-01T14:35:52+01:00
+ * @Last modified time: 2019-08-02T00:25:38+01:00
  * @Copyright: Altreze SARL
  */
 
@@ -17,6 +17,11 @@ import * as fromProduct from '../../reducers';
 import { State } from '../../reducers/product.reducer';
 import { Product } from '../../models/product.model';
 
+interface points {
+  x?: any[],
+  y?: number[]
+}
+
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
@@ -27,7 +32,9 @@ export class ProductsComponent implements OnInit {
   immutableProducts$: Observable<Product[]> = of([]);
   products$: Observable<Product[]> = of([]);
   options$: Observable<Product[]> = of([]);
-  selectedValue: number = 0;
+  selectedValue = 0;
+
+  data: points = {};
 
   constructor(
     private readonly store: Store<State>
@@ -49,6 +56,9 @@ export class ProductsComponent implements OnInit {
   }
 
   onChange(values: any) {
+    let xx: string[] = [];
+    let yy: number[] = [];
+
     this.products$ = this.immutableProducts$.pipe(
       map((products: Product[]) => {
         if (values != 0 ) {
@@ -56,7 +66,15 @@ export class ProductsComponent implements OnInit {
         }  else {
           return products;
         }
-      })
+      }),
+      tap(products => products.forEach(product => {
+
+        xx.push(product.date);
+        yy.push(product.inventory_level);
+
+        this.data = { x: [...xx], y: [...yy] };
+
+      }))
     );
   }
 

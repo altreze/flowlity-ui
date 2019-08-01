@@ -31,7 +31,9 @@
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.sass"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/plotly.min.js"
+            ]
           },
           "configurations": {
             "production": {

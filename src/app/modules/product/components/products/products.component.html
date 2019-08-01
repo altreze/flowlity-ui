@@ -9,7 +9,7 @@
         -- Select an element --
       </option>
       <option *ngFor="let option of (options$ | async)" [value]="option.product_name">
-        {{ option.product_name }}
+        {{ option?.product_name }}
       </option>
     </select>
   </div>
@@ -25,13 +25,14 @@
             <th scope="col">Inventory level</th>
           </tr>
         </thead>
+
         <tbody>
-          <ng-container *ngFor="let product of (products$ | async) | filter: selectedValue">
+          <ng-container *ngFor="let product of (products$ | async)">
             <tr>
-              <th scope="row">{{ product.product_id }}</th>
-              <td>{{ product.product_name }}</td>
-              <td>{{ product.date }}</td>
-              <td>{{ product.inventory_level }}</td>
+              <th scope="row">{{ product?.product_id }}</th>
+              <td>{{ product?.product_name }}</td>
+              <td>{{ product?.date }}</td>
+              <td>{{ product?.inventory_level }}</td>
             </tr>
           </ng-container>
         </tbody>
@@ -39,3 +40,5 @@
   </div>
 
 </ng-template>
+
+<app-graph [data]="data"></app-graph>
